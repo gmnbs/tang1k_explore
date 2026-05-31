@@ -1,7 +1,8 @@
-# Gowin build output (synthesis, place & route, scratch)
-/impl/
+# Gowin build output (synthesis, place & route, scratch, bitstreams)
+impl/
+*.fs
 
-# Per-user IDE state (keep led_prj.gprj, ignore the .user companion)
+# Per-user IDE state (keep tang1k.gprj, ignore the .user companion)
 *.gprj.user
 
 # macOS
