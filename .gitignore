@@ -1,0 +1,8 @@
+# Gowin build output (synthesis, place & route, scratch)
+/impl/
+
+# Per-user IDE state (keep led_prj.gprj, ignore the .user companion)
+*.gprj.user
+
+# macOS
+.DS_Store

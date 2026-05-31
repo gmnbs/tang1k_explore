@@ -1,0 +1,40 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "localparam",
+    "endmodule",
+    "endcase",
+    "endfunction",
+    "endtask",
+    "endgenerate",
+    "endspecify",
+    "posedge",
+    "negedge",
+    "genvar",
+    "clog",
+    "inout",
+    "wand",
+    "tranif",
+    "rnmos",
+    "rpmos",
+    "logic",
+    "typedef",
+    "always",
+    "Gowin",
+    "Sipeed",
+    "sipeed",
+    "tang",
+    "gwsynthesis",
+    "gprj",
+    "vsix",
+    "LVCMOS",
+    "LVDS",
+    "IOBUF",
+    "waveform",
+    "Synopsys"
+  ],
+  "ignoreRegExpList": [
+    "[0-9]+'[bdhBDH][0-9a-fA-FxXzZ_]+"
+  ]
+}
