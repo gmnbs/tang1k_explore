@@ -1,4 +1,4 @@
-`define SYS_CLK_FREQ 27000000   // Tang Nano 1K 27 MHz crystal (see led_prj.sdc)
+`define SYS_CLK_FREQ 27000000   // Tang Nano 1K 27 MHz crystal (see tang1k.sdc)
 
 module top (
     input   sys_clk,            // pin 47

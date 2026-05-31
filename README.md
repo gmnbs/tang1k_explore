@@ -8,14 +8,14 @@ dev board (Gowin GW1NZ-1). Random Verilog experiments — nothing serious.
 ```
 src/      RTL
 constr/   pin (.cst) + timing (.sdc) constraints
-gowin/    Gowin IDE project (led_prj.gprj); impl/ build output lands here (gitignored)
+gowin/    Gowin IDE project (tang1k.gprj); impl/ build output lands here (gitignored)
 scripts/  build.sh — CLI build/flash driver
 ```
 
 ## Build / flash
 
 `scripts/build.sh` reads the device and source list straight out of
-`gowin/led_prj.gprj` (single source of truth) and drives the Gowin CLI tools.
+`gowin/tang1k.gprj` (single source of truth) and drives the Gowin CLI tools.
 
 ```sh
 scripts/build.sh            # synth + place & route + bitstream
@@ -28,5 +28,5 @@ Requires GowinIDE (for `gw_sh`) and [openFPGALoader](https://github.com/trabucay
 (`brew install openFPGALoader`). Toolchain paths and board are overridable via the
 `GWSH`, `LOADER`, and `LOADER_BOARD` env vars — see the top of the script.
 
-Add new sources through the Gowin IDE so `led_prj.gprj` stays current; the build
+Add new sources through the Gowin IDE so `tang1k.gprj` stays current; the build
 script picks them up automatically.

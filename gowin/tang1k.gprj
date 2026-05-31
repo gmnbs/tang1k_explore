@@ -7,7 +7,7 @@
     <FileList>
         <File path="../src/top.v" type="file.verilog" enable="1"/>
         <File path="../src/led.v" type="file.verilog" enable="1"/>
-        <File path="../constr/led_prj.cst" type="file.cst" enable="1"/>
-        <File path="../constr/led_prj.sdc" type="file.sdc" enable="1"/>
+        <File path="../constr/tang1k.cst" type="file.cst" enable="1"/>
+        <File path="../constr/tang1k.sdc" type="file.sdc" enable="1"/>
     </FileList>
 </Project>
