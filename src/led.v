@@ -1,6 +1,7 @@
 
 module led #(
-    parameter CLK_FREQ = 100000000
+    parameter CLK_FREQ          = 100000000,
+    parameter UPDATE_RATE_HZ    = 2
 ) (
     input       clk_i,
     input       rst_n_i,
@@ -10,8 +11,8 @@ module led #(
     output reg  led_b_o
 );
 
-localparam CW = $clog2(CLK_FREQ / 2);            // Counter width
-localparam MAX_COUNT = CLK_FREQ/2 - 1;           // Terminal count = 0.5 s at CLK_FREQ Hz
+localparam CW = $clog2(CLK_FREQ / UPDATE_RATE_HZ);            // Counter width
+localparam MAX_COUNT = CLK_FREQ/UPDATE_RATE_HZ - 1;           // Terminal count = 0.5 s at CLK_FREQ Hz
 
 reg [CW-1:0] counter;
 

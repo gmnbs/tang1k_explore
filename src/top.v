@@ -10,7 +10,8 @@ module top (
 );
 
 led #(
-    .CLK_FREQ(`SYS_CLK_FREQ)
+    .CLK_FREQ(`SYS_CLK_FREQ),
+    .UPDATE_RATE_HZ(10)
 ) led_inst (
     .clk_i(sys_clk),
     .rst_n_i(sys_rst_n),
