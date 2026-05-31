@@ -1,21 +1,33 @@
-module led (
-    input sys_clk,
-    input sys_rst_n,
-    output reg [2:0] led // 110 R, 101 B, 011 G
+
+module led #(
+    parameter CLK_FREQ = 100000000
+) (
+    input       clk_i,
+    input       rst_n_i,
+
+    output reg  led_r_o,
+    output reg  led_g_o,
+    output reg  led_b_o
 );
 
-reg [31:0] counter;
+localparam CW = $clog2(CLK_FREQ / 2);            // Counter width
+localparam MAX_COUNT = CLK_FREQ/2 - 1;           // Terminal count = 0.5 s at CLK_FREQ Hz
 
-always @(posedge sys_clk or negedge sys_rst_n) begin
-    if (!sys_rst_n) begin
-        counter <= 31'd0;
-        led <= 3'b110;
+reg [CW-1:0] counter;
+
+always @(posedge clk_i or negedge rst_n_i) begin
+    if (!rst_n_i) begin
+        counter <= 0;
+
+        led_r_o <= 1'b1;
+        led_g_o <= 1'b1;
+        led_b_o <= 1'b0;
     end
-    else if (counter < 31'd1350_0000)       // 0.5s delay
-        counter <= counter + 1;
+    else if (counter < MAX_COUNT[CW-1:0])
+        counter <= counter + 1'b1;
     else begin
-        counter <= 31'd0;
-        led[2:0] <= {led[1:0],led[2]};
+        counter <= 0;
+        {led_r_o, led_g_o, led_b_o} <= {led_g_o, led_b_o, led_r_o};
     end
 end
 
