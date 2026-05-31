@@ -4,23 +4,25 @@
 # Single source of truth: the *.gprj file. Device and source list are parsed
 # from it, so there is nothing to keep in sync here.
 #
-# Usage:
-#   ./build.sh              # synthesize + place&route + bitstream
-#   ./build.sh flash        # flash last bitstream to SRAM (volatile)
-#   ./build.sh flash-spi    # write bitstream to onboard flash (persistent)
-#   ./build.sh all          # build, then flash to SRAM
+# Usage (run from anywhere):
+#   scripts/build.sh              # synthesize + place&route + bitstream
+#   scripts/build.sh flash        # flash last bitstream to SRAM (volatile)
+#   scripts/build.sh flash-spi    # write bitstream to onboard flash (persistent)
+#   scripts/build.sh all          # build, then flash to SRAM
 #
 # Override autodetected paths/board via env vars if needed:
-#   GWSH=/path/to/gw_sh  LOADER_BOARD=tangnano1k  ./build.sh
+#   GWSH=/path/to/gw_sh  LOADER_BOARD=tangnano1k  scripts/build.sh
 
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$ROOT"
-
 # --- locate the project file -------------------------------------------------
-GPRJ="$(ls *.gprj 2>/dev/null | head -n1 || true)"
-[ -n "$GPRJ" ] || { echo "error: no *.gprj found in $ROOT" >&2; exit 1; }
+# The .gprj lives under gowin/; its <File> paths are relative to that dir, and
+# Gowin writes impl/ next to it, so we run the whole build from the .gprj's dir.
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+GPRJ_PATH="$(find "$REPO_ROOT" -maxdepth 2 -name '*.gprj' 2>/dev/null | head -n1 || true)"
+[ -n "$GPRJ_PATH" ] || { echo "error: no *.gprj found under $REPO_ROOT" >&2; exit 1; }
+cd "$(dirname "$GPRJ_PATH")"
+GPRJ="$(basename "$GPRJ_PATH")"
 BASE="${GPRJ%.gprj}"
 
 # --- locate the Gowin toolchain ----------------------------------------------
